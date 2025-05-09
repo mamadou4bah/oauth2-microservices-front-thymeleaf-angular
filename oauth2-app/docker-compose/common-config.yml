@@ -1,0 +1,19 @@
+services:
+  network-deploy-service:
+    networks:
+      - mamadou4bah
+
+  keycloak-db-config:
+    extends:
+      service: network-deploy-service
+    image: "postgres:14.4"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 60s
+      retries: 10
+      interval: 10s
+      start_period: 10s
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: postgres
