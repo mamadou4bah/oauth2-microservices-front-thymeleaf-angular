@@ -17,6 +17,7 @@ services:
     container_name: keycloak
     build:
       context: .
+      dockerfile: Dockerfile
       args:
         KEYCLOAK_VERSION: 22.0.0
     command: [ 'start', '--optimized', '--import-realm' ]
